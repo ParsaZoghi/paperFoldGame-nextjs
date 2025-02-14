@@ -1,5 +1,8 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Demo
+Click to see the [Vercel demo](https://paper-fold-game-nextjs.vercel.app).
+
 ## Getting Started
 
 First, install the dependencies:
