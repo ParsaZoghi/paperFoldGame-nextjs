@@ -1,0 +1,12 @@
+@use "sass:color";
+$blue: #0070f3;
+$blue-dark: color.adjust($blue, $lightness: -10%);
+
+@keyframes hide-button {
+    0% { opacity: 1; visibility: visible; }
+    100% { opacity: 0; visibility: hidden; }
+}
+@keyframes show-button {
+    0% { opacity: 0; visibility: hidden; }
+    100% { opacity: 1; visibility: visible; }
+}

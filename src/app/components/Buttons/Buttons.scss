@@ -1,0 +1,49 @@
+@use '../../assets/scss/variables';
+
+main {
+  > .button-container {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+
+    > button {
+      padding: 12px 24px;
+      font-size: 1rem; color: #fff;
+      border: 1px solid transparent; border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.2s,
+                  border-color 0.2s,
+                  /*opacity 0.2s
+                  visibility 0.2s*/;
+
+      &:not(:disabled) {
+        &.fold-button {
+          background-color: variables.$blue;
+
+          &:hover { background-color: variables.$blue-dark; }
+        }
+
+        &.unfold-button {
+          color: variables.$blue;
+          border-color: variables.$blue;
+
+          &:hover {
+            color: variables.$blue-dark;
+            border-color: variables.$blue-dark;
+          }
+        }
+      }
+
+      &:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+.hide-button {
+  animation: hide-button 0.4s ease 0s 1 normal forwards;
+}
+
+.show-button {
+  animation: show-button 0.4s ease 0s 1 normal forwards;
+}
