@@ -97,7 +97,7 @@ export async function GET() {
     const el = {
       id: i + 1,
       folds: i,
-      height: initialHeight * Math.pow(2, i),
+      height: initialHeight * (2 ** i),
       desc: descs[i],
       imgPath: imgs[i]
     }

@@ -10,9 +10,10 @@ import Buttons from './components/Buttons/Buttons'
 import './style.scss'
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true)
   const [folds, setFolds] = useState(0)
   const [curFold, setCurFold] = useState({})
-  const [isLoading, setIsLoading] = useState(true)
+  const [maxFold, setMaxFold] = useState(0)
 
   const fetchDataFromApi = async () => {
     setIsLoading(true)
@@ -29,6 +30,7 @@ export default function Home() {
         const data = await res.json()
 
         setCurFold({ ...data.folds[folds] })
+        setMaxFold(data.folds.length - 1)
       }
 
     } catch (err) {
@@ -49,7 +51,7 @@ export default function Home() {
         <Headings folds={folds} />
         <Figure isLoading={isLoading} curFold={curFold} />
         <Details isLoading={isLoading} curFold={curFold} />
-        <Buttons isLoading={isLoading} folds={folds} setFolds={setFolds} />
+        <Buttons isLoading={isLoading} folds={folds} setFolds={setFolds} maxFold={maxFold} />
       </>
     </main>
   )
