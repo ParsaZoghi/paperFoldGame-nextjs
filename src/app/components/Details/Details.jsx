@@ -1,6 +1,6 @@
 import './Details.scss'
 
-export default function Details({ isLoading, curFold }) {
+export default function Details({ states }) {
   const formatHeight = height => {
     const thresholds = [1000000, 1000, 10]
     const units = ['km', 'm', 'cm']
@@ -21,9 +21,9 @@ export default function Details({ isLoading, curFold }) {
     <div className="details">
       <p className="fold-height">
         <span>current height:</span>
-        <span className={isLoading ? 'skeleton skeleton-p' : ''}>{isLoading ? '' : formatHeight(curFold.height)}</span>
+        <span className={states.isLoading ? 'skeleton skeleton-p' : ''}>{states.isLoading ? '' : formatHeight(states.curFold.height)}</span>
       </p>
-      <p className={isLoading ? 'skeleton skeleton-p' : ''}>{isLoading ? '' : curFold.desc}</p>
+      <p className={states.isLoading ? 'skeleton skeleton-p' : ''}>{states.isLoading ? '' : states.curFold.desc}</p>
     </div>
   )
 }

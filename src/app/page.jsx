@@ -1,6 +1,6 @@
-"use client"
+'use client'
 
-import { useState, useEffect } from "react"
+import { useState, useEffect } from 'react'
 
 import Headings from './components/Headings/Headings'
 import Figure from './components/Figure/Figure'
@@ -10,49 +10,49 @@ import Buttons from './components/Buttons/Buttons'
 import './style.scss'
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true)
-  const [folds, setFolds] = useState(0)
-  const [curFold, setCurFold] = useState({})
-  const [maxFold, setMaxFold] = useState(0)
+  const [states, setStates] = useState({
+    isLoading: true,
+    folds: 0,
+    curFold: {},
+    maxFold: 0
+  })
 
-  const fetchDataFromApi = async () => {
-    setIsLoading(true)
+  const fetchData = async () => {
+    setStates(prevStates => ({ ...prevStates, isLoading: true }))
 
     try {
-      const res = await fetch("/api", {
+      const res = await fetch('/api', {
         headers: {
-          Accept: "application/json",
-          method: "GET"
+          Accept: 'application/json',
+          method: 'GET'
         }
       })
 
       if (res.ok) {
         const data = await res.json()
 
-        setCurFold({ ...data.folds[folds] })
-        setMaxFold(data.folds.length - 1)
+        setStates(prevStates => ({ ...prevStates, curFold: { ...data.folds[states.folds] } }))
+        setStates(prevStates => ({ ...prevStates, maxFold: data.folds.length - 1 }))
       }
 
     } catch (err) {
       console.error(err)
 
     } finally {
-      setIsLoading(false)
+      setStates(prevStates => ({ ...prevStates, isLoading: false }))
     }
   }
 
   useEffect(() => {
-    fetchDataFromApi()
-  }, [folds])
+    fetchData()
+  }, [states.folds])
 
   return (
     <main>
-      <>
-        <Headings folds={folds} />
-        <Figure isLoading={isLoading} curFold={curFold} />
-        <Details isLoading={isLoading} curFold={curFold} />
-        <Buttons isLoading={isLoading} folds={folds} setFolds={setFolds} maxFold={maxFold} />
-      </>
+      <Headings states={states} />
+      <Figure states={states} />
+      <Details states={states} />
+      <Buttons states={states} setStates={setStates} />
     </main>
   )
 }

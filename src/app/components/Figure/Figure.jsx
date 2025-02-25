@@ -1,16 +1,16 @@
-import Image from "next/image"
+import Image from 'next/image'
 
 import './Figure.scss'
 
-export default function Figure({ isLoading, curFold }) {
+export default function Figure({ states }) {
   return (
     <figure>
-      {isLoading ? (
+      {states.isLoading ? (
         <div className="skeleton skeleton-img"></div>
       ) : (
         <Image
-          src={`/assets/img/${curFold.imgPath}`}
-          alt={curFold.imgPath.replace(/^\d+-/, '').replace(/\.[^.]+$/, '')}
+          src={`/assets/img/${states.curFold.imgPath}`}
+          alt={states.curFold.imgPath.replace(/^\d+-/, '').replace(/\.[^.]+$/, '')}
           priority={true}
           width={282}
           height={300}
