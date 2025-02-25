@@ -93,6 +93,7 @@ export async function GET() {
           '41-proxima-centauri.webp',
           '42-earth-to-moon.png'
         ]
+
   for (let i = 0; i <= 42; i++) {
     const el = {
       id: i + 1,
@@ -101,7 +102,9 @@ export async function GET() {
       desc: descs[i],
       imgPath: imgs[i]
     }
+
     folds.push(el)
   }
-  return NextResponse.json({folds})
+
+  return NextResponse.json({ folds })
 }
